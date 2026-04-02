@@ -1,7 +1,7 @@
 import type React from "react";
 import s from './Filter.module.css';
 import { Switch, ConfigProvider } from 'antd';
-
+import { Checkbox } from 'antd';
 
 const Filter: React.FC = () => {
 
@@ -26,8 +26,9 @@ const Filter: React.FC = () => {
 					{
 						categories.map((category, index) => (
 							<li key={index}>
-								<input type="checkbox" id={`category-${index}`} name={`category-${index}`} value={category} />
-								{category}
+								<Checkbox onChange={(e) => console.log(e.target.checked)}>
+									<span className={s['category-text']}>{category}</span>
+								</Checkbox>
 							</li>
 						))
 					}

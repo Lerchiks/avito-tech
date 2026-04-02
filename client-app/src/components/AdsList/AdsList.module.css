@@ -1,0 +1,43 @@
+.ads-container {
+	display: flex;
+	flex-direction: column;
+	width: 1200px;
+	margin: 0 auto;
+	gap: 10px;
+}
+
+.ads-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 200px); 
+	justify-content: center;
+	column-gap: 13px;
+	row-gap: 13px; 
+	width: 100%;
+}
+
+.pagination-wrapper {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 40px;
+}
+
+.pagination-wrapper :global(.ant-pagination-item) {
+	border: 1px solid #D9D9D9;
+	border-radius: 8px;
+	background-color: #ffffff;
+}
+
+.pagination-wrapper :global(.ant-pagination-item-active) {
+	border-color: #00AAFF;
+}
+
+.pagination-wrapper :global(.ant-pagination-item-active a) {
+	color: #00AAFF;
+}
+
+.pagination-wrapper :global(.ant-pagination-prev),
+.pagination-wrapper :global(.ant-pagination-next) {
+	border: 1px solid #D9D9D9;
+	border-radius: 8px;
+	background-color: #ffffff;
+}
