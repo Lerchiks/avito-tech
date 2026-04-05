@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.line {
+    display: flex;
+}
+
+.line label {
+    display: block;
+    width: 200px;
+    height: auto;
+    color: #00000073;
+}
+

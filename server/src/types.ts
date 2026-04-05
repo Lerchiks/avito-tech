@@ -44,6 +44,6 @@ type ElectronicsItemParams = {
   color?: string;
 };
 
-export type ItemSortColumn = Extract<keyof Item, 'title' | 'createdAt'>;
+export type ItemSortColumn = Extract<keyof Item, 'title' | 'createdAt' | 'price'>; //добавлена сортировка по цене
 
 export type SortDirection = 'asc' | 'desc';

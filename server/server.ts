@@ -5,6 +5,7 @@ import { Item } from 'src/types.ts';
 import { ItemsGetInQuerySchema, ItemUpdateInSchema } from 'src/validation.ts';
 import { treeifyError, ZodError } from 'zod';
 import { doesItemNeedRevision } from './src/utils.ts';
+import fastifyCors from '@fastify/cors';
 
 const ITEMS = items as Item[];
 
@@ -13,6 +14,12 @@ const fastify = Fastify({
 });
 
 await fastify.register((await import('@fastify/middie')).default);
+
+await fastify.register(fastifyCors, { 
+  origin: 'http://localhost:5173', 
+  methods: ['GET', 'PUT', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+});
 
 // Искуственная задержка ответов, чтобы можно было протестировать состояния загрузки
 fastify.use((_, __, next) =>
@@ -99,12 +106,15 @@ fastify.get<ItemsGetRequest>('/items', request => {
           comparisonValue =
             new Date(item1.createdAt).valueOf() -
             new Date(item2.createdAt).valueOf();
-        }
+        } else if (sortColumn === 'price') {
+          comparisonValue = item1.price - item2.price;
+        } //добавлена сортировка по цене
 
         return (sortDirection === 'desc' ? -1 : 1) * comparisonValue;
       })
       .slice(skip, skip + limit)
       .map(item => ({
+        id: item.id,
         category: item.category,
         title: item.title,
         price: item.price,
@@ -163,13 +173,24 @@ fastify.put<ItemUpdateRequest>('/items/:id', (request, reply) => {
   }
 });
 
-const port = Number(process.env.port) ?? 8080;
+// const port = Number(process.env.port) ?? 8080;
 
-fastify.listen({ port }, function (err, _address) {
+// fastify.listen({ port }, function (err, _address) {
+//   if (err) {
+//     fastify.log.error(err);
+//     process.exit(1);
+//   }
+
+//   fastify.log.debug(`Server is listening on port ${port}`);
+// });
+
+const port = Number(process.env.PORT) || 8080;
+
+fastify.listen({ port, host: '0.0.0.0' }, function (err, address) {
   if (err) {
     fastify.log.error(err);
     process.exit(1);
   }
-
-  fastify.log.debug(`Server is listening on port ${port}`);
+  // Используй address, чтобы точно видеть, где запустился сервер
+  console.log(`Server is listening on ${address}`);
 });

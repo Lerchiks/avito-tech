@@ -2,18 +2,34 @@ import type React from "react";
 import s from './Filter.module.css';
 import { Switch, ConfigProvider } from 'antd';
 import { Checkbox } from 'antd';
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import { toggleCategory, resetCategory, setNeedsRevision } from "../../store/slices/adsSlice";
+
+
+const categoryOptions = [
+    { label: 'Авто', value: 'auto' },
+    { label: 'Недвижимость', value: 'real_estate' },
+    { label: 'Электроника', value: 'electronics' },
+];
 
 const Filter: React.FC = () => {
 
-	const onChange = (checked: boolean) => {
-		console.log(`switch to ${checked}`);
-	};
+	const dispatch = useAppDispatch();
+	
+	const { selectedCategories, needsRevision } = useAppSelector(state => state.ads);
 
-	const categories = [
-		'Авто',
-		'Электроника',
-		'Недвижимость'
-	];
+	const handleChangeCategory = (category: string) => {
+        dispatch(toggleCategory(category));
+    };
+
+	const handleRevisionChange = (checked: boolean) => {
+        dispatch(setNeedsRevision(checked));
+    };
+
+	const handleReset = () => {
+        dispatch(resetCategory());
+    };
+
 
 	return (
 		<div className={s['filter-content']}>
@@ -23,15 +39,16 @@ const Filter: React.FC = () => {
 			<div className={s['categories']}>
 				Категория
 				<ul className={s['categories-list']}>
-					{
-						categories.map((category, index) => (
-							<li key={index}>
-								<Checkbox onChange={(e) => console.log(e.target.checked)}>
-									<span className={s['category-text']}>{category}</span>
-								</Checkbox>
-							</li>
-						))
-					}
+					{categoryOptions.map((cat) => (
+						<li key={cat.value}>
+							<Checkbox 
+								checked={selectedCategories.includes(cat.value)}
+								onChange={() => handleChangeCategory(cat.value)}
+							>
+								<span className={s['category-text']}>{cat.label}</span>
+							</Checkbox>
+						</li>
+					))}
 				</ul>
 			</div>
 
@@ -49,15 +66,25 @@ const Filter: React.FC = () => {
 						}
 					}}
 				>
-					<Switch defaultChecked onChange={onChange} />
+					<Switch 
+					onChange={handleRevisionChange} 
+					checked={needsRevision}
+					/>
 				</ConfigProvider>
 			</div>
 		</div>
 
-		<button className={s['reset-btn']}>Сбросить фильтры</button>
+		<button 
+			className={s['reset-btn']}
+			onClick={handleReset}
+		>
+		
+			Сбросить фильтры
+		</button>
 		</div>
 	)	
 }
 
 
 export default Filter;
+

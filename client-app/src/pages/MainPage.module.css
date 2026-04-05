@@ -1,0 +1,42 @@
+.app-wrapper {
+	display: flex;
+	flex-direction: column;
+	max-width: 1200px;
+	width: 100%;
+	margin: 12px auto;
+	padding: 0 20px;
+	gap: 16px;
+}
+
+
+.info {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: 8px;
+}
+
+.ads-amount {
+	font-family: 'Inter', sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 1;
+	letter-spacing: 0;
+	color: #848388;
+}
+
+.info strong {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	font-style: normal;
+	font-size: 22px;
+	line-height: 1.3;
+	letter-spacing: 0;
+}
+
+.main-content {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	gap: 20px;
+}

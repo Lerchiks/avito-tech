@@ -1,0 +1,25 @@
+.layout-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    gap: 3px;
+    border-radius: 8px;
+    background-color: #f4f4f6;
+}
+
+.item {
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.activeIt {
+    color: var(--active-color);
+}
+
+.item:hover {
+    color: var(--active-color);
+}
+
+.item:active {
+    color: var(--active-color);
+}

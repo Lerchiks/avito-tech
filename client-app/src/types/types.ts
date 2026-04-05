@@ -1,11 +1,16 @@
-export type Item = {
-	id: number;
-	title: string;
-	description?: string;
-	price: number | null;
-	createdAt: string;
-	updatedAt: string;
-	} & (
+interface BaseItem {
+    id: number;
+    title: string;
+    description?: string;
+    price: number;
+    createdAt: string;
+    updatedAt: string;
+    needsRevision?: boolean;
+}
+
+export type Item = 
+	BaseItem & (
+	 
 	| {
 		category: 'auto';
 		params: AutoItemParams;
@@ -20,7 +25,7 @@ export type Item = {
 		}
 );
 
-type AutoItemParams = {
+export type AutoItemParams = {
 	brand?: string;
 	model?: string;
 	yearOfManufacture?: number;
@@ -29,14 +34,14 @@ type AutoItemParams = {
 	enginePower?: number;
 };
 
-type RealEstateItemParams = {
+export type RealEstateItemParams = {
 	type?: 'flat' | 'house' | 'room';
 	address?: string;
 	area?: number;
 	floor?: number;
 };
 
-type ElectronicsItemParams = {
+export type ElectronicsItemParams = {
 	type?: 'phone' | 'laptop' | 'misc';
 	brand?: string;
 	model?: string;
@@ -44,6 +49,4 @@ type ElectronicsItemParams = {
 	color?: string;
 };
 
-export type ItemSortColumn = Extract<keyof Item, 'title' | 'createdAt'>;
-
-export type SortDirection = 'asc' | 'desc';
+export type AdParams = AutoItemParams | RealEstateItemParams | ElectronicsItemParams | Record<string, unknown>;

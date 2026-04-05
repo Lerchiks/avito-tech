@@ -1,0 +1,17 @@
+.searcher-wrapper {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    border-radius: 8px;
+    width: 100%;
+    padding: 12px;
+    background-color: #ffffff;
+}
+
+.searcher {
+	display: flex;
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f6f6f8;
+}

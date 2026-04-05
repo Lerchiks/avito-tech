@@ -1,0 +1,135 @@
+.form {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.fieldAi {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+}
+
+.requiered-element  {
+    color: #ff4d4f;
+}
+
+.errorMessage {
+    margin-top: 8px;
+    color: #ff4d4f;
+    font-size: 12px;
+}
+
+.label {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.detailsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.strongT {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.input, .textarea {
+    padding: 10px 12px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.textarea {
+    max-width: 500px;
+    min-width: 500px;
+    max-height: 500px;
+}
+
+.input:focus {
+    border-color: #00AAFF;
+}
+
+.divider {
+    border-bottom: 1px solid #eee;
+    margin: 8px 0;
+    color: #888;
+}
+
+.submitBtn {
+    background: var(--active-color);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.unactiveSubmitBtn {
+    background: #00aaff32;
+    color: white;
+    padding: 12px;
+    border: none;
+    outline: 1px solid rgba(255, 255, 255, 0.208);
+    border-radius: 8px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.submitBtn:hover {
+    background: #2495fe;
+    transform: scale(1.02);
+}
+
+.btns-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px
+}
+
+.cancel-button {
+    background: rgba(217, 217, 217, 1);
+    color: #5a5a5a;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-button:hover{
+    transform: scale(1.02);
+}
+
+.warning-input {
+    border-color: #ffa940;
+}
+
+.antdInput, .antdSelect {
+    max-width: 450px;
+}
