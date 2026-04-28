@@ -57,43 +57,53 @@ Ollama Backend (PORT=5051)
 ```bash
 ollama pull tinydolphin
 ollama serve
-
+```
 ### 2. Запуск Ollama backend
-
+```bash
 cd ollama-backend
 node server
-
+```
 Работает на порту 5051
 
 ### 3. Запуск основного сервера
+```bash
 cd server
 npm install
 set PORT=8080 && npm start
-
+```
 Сервер будет доступен на http://localhost:8080
 
 ### 4. Запуск фронтенда
+
+```bash
 cd client-app
 npm install
 npm run dev
+```
 
-📌 Примечания
+---
+
+## 📌 Примечания
 Ollama работает локально
 Используемая модель: tinydolphin
 Основной сервер: 8080
 Ollama backend: 5051
 
-🛠️ Возможные проблемы и решения
+## 🛠️ Возможные проблемы и решения
 ❗ Зависимости не устанавливаются
 
 Windows:
+```bash
 del package-lock.json
 rd /s /q node_modules
 npm config set registry https://registry.npmjs.org/
 npm install
+```
 
 macOS / Linux:
+
+```bash
 rm package-lock.json
 rm -rf node_modules
 npm install
-
+```
